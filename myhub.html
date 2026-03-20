@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Young's Hub</title>
+<link rel="icon" href="https://baichuan-sihai.github.io/home-base/myhub.html" type="text/html">
+<meta name="theme-color" content="#faf8f5">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #faf8f5;
+    --text: #2d2a26;
+    --text-2: #78716c;
+    --accent: #d97706;
+    --accent-light: #fbbf24;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .bg-warm {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 700px 500px at 8% 8%, rgba(245,158,11,0.08), transparent),
+      radial-gradient(ellipse 500px 400px at 92% 85%, rgba(217,119,6,0.06), transparent);
+  }
+
+  .container {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    max-width: 480px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #d97706, #f59e0b, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--text-2);
+    margin-bottom: 2rem;
+  }
+
+  .loader-wrap {
+    margin: 2rem auto;
+    position: relative;
+    width: 48px; height: 48px;
+  }
+
+  .loader-ring {
+    width: 48px; height: 48px;
+    border: 3px solid rgba(217,119,6,0.12);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .loader-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 8px; height: 8px;
+    background: var(--accent-light);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.6); }
+  }
+
+  .status-text {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    margin-top: 0.5rem;
+  }
+
+  .status-text .dots::after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+  }
+
+  @keyframes dots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+  }
+
+  .fallback {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-2);
+    opacity: 0.7;
+  }
+
+  .fallback a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent);
+    transition: opacity 0.2s;
+  }
+
+  .fallback a:hover { opacity: 0.8; }
+
+  .footer {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-2);
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+  <div class="bg-warm"></div>
+  <div class="container">
+    <h1><span class="gradient-text">Young's Hub</span></h1>
+    <p class="subtitle">学术文献推送 · AI 资讯聚合</p>
+    <div class="loader-wrap">
+      <div class="loader-ring"></div>
+      <div class="loader-dot"></div>
+    </div>
+    <p class="status-text">正在跳转<span class="dots"></span></p>
+    <p class="fallback">如未自动跳转，<a id="link" href="#">点击这里</a></p>
+  </div>
+  <div class="footer">Young's Hub</div>
+
+<script>
+const TUNNEL_URL = "https://throughout-caps-vital-feels.trycloudflare.com";
+document.getElementById('link').href = TUNNEL_URL;
+setTimeout(() => { window.location.href = TUNNEL_URL; }, 1200);
+</script>
+</body>
+</html>
